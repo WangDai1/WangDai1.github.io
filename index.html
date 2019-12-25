@@ -61,6 +61,55 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-美团外卖visit_id" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/25/%E7%BE%8E%E5%9B%A2%E5%A4%96%E5%8D%96visit_id/" class="article-date">
+  <time datetime="2019-12-25T03:13:44.811Z" itemprop="datePublished">2019-12-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/25/%E7%BE%8E%E5%9B%A2%E5%A4%96%E5%8D%96visit_id/">美团外卖visit_id</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="美团外卖"><a href="#美团外卖" class="headerlink" title="美团外卖"></a>美团外卖</h2><p>美团外卖 h5 的VisitID与uuid.uuid4() 的结构类似, 但是它的生成是和 时间有关系的，所以 不可以直接uuid.uuid4()</p>
+<ul>
+<li><p>js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getVisitID</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> e = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"</span>.replace(<span class="regexp">/[xy]/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">r</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> t = (e + <span class="number">16</span> * <span class="built_in">Math</span>.random()) % <span class="number">16</span> | <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> e = <span class="built_in">Math</span>.floor(e / <span class="number">16</span>), (<span class="string">"x"</span> === r ? t : <span class="number">3</span> &amp; t | <span class="number">8</span>).toString(<span class="number">16</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="律师事务所"><a href="#律师事务所" class="headerlink" title="律师事务所"></a>律师事务所</h2><p><a href="http://www.12348.gov.cn" target="_blank" rel="noopener">www.12348.gov.cn</a> 的两个参数v_key 和guid，是可以uuid.uuid4()直接生成的</p>
+</li>
+<li><p>js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getKey</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> s = [];</span><br><span class="line">    <span class="keyword">var</span> hexDigits = <span class="string">"0123456789abcdef"</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">36</span>; i++) &#123;</span><br><span class="line">        s[i] = hexDigits.substr(<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">0x10</span>), <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    s[<span class="number">14</span>] = <span class="string">"4"</span>;  <span class="comment">// bits 12-15 of the time_hi_and_version field to 0010</span></span><br><span class="line">    s[<span class="number">19</span>] = hexDigits.substr((s[<span class="number">19</span>] &amp; <span class="number">0x3</span>) | <span class="number">0x8</span>, <span class="number">1</span>);  <span class="comment">// bits 6-7 of the clock_seq_hi_and_reserved to 01</span></span><br><span class="line">    s[<span class="number">8</span>] = s[<span class="number">13</span>] = s[<span class="number">18</span>] = s[<span class="number">23</span>] = <span class="string">"-"</span>;</span><br><span class="line">    <span class="keyword">var</span> uuid = s.join(<span class="string">""</span>);</span><br><span class="line">    <span class="keyword">return</span> uuid;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>python</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> uuid</span><br><span class="line">uuid.uuid4()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/12/25/%E7%BE%8E%E5%9B%A2%E5%A4%96%E5%8D%96visit_id/" data-id="ck4kq5f8p0003n0vua0si6fer" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Python-Appium的安装" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/12/25/Python-Appium%E7%9A%84%E5%AE%89%E8%A3%85/" class="article-date">
@@ -168,7 +217,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/25/Python-Appium%E7%9A%84%E5%AE%89%E8%A3%85/" data-id="ck4kq2aiz0001c4vuaen6emj0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/25/Python-Appium%E7%9A%84%E5%AE%89%E8%A3%85/" data-id="ck4kq5f8x0004n0vu2mueeuoc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python-appium/" rel="tag">python appium</a></li></ul>
@@ -254,7 +303,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/07/Frida-install-1/" data-id="ck4kq2aho0000c4vudfai6ouu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/07/Frida-install-1/" data-id="ck4kq5f7o0000n0vugt4r5ycd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Frida/" rel="tag">Frida</a></li></ul>
@@ -305,7 +354,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/07/hello-world/" data-id="ck4kq2aje0003c4vubrvx0q3l" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/07/hello-world/" data-id="ck4kq5f8d0001n0vu1h2o5qbb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -358,6 +407,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/12/25/%E7%BE%8E%E5%9B%A2%E5%A4%96%E5%8D%96visit_id/">美团外卖visit_id</a>
+          </li>
         
           <li>
             <a href="/2019/12/25/Python-Appium%E7%9A%84%E5%AE%89%E8%A3%85/">Python-Appium的安装</a>
